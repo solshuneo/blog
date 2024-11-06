@@ -1,0 +1,39 @@
+body {
+    display: block;
+    margin-top: 100px;
+    font-family: 'Poppins', sans-serif; /* Sử dụng font Poppins */
+
+}
+.navbar {
+    position: fixed; /* Cố định navbar */
+    top: 0; /* Đặt navbar ở đầu trang */
+    left: 0; /* Đặt navbar ở bên trái */
+    width: 100%; /* Đặt chiều rộng của navbar bằng 100% */
+    padding: 20px;
+    background: #FFE5CE;
+    display: flex;
+    font-size: 24px;
+    z-index: 10000;
+}
+.inner-navbar {
+    margin: 0 20px 0;
+}
+.end-navbar {
+    display: flex;
+    margin-left: auto; /* Đẩy phần tử sang bên phải */
+    margin-right: 50px;
+}
+.main {
+    margin-top: 100px;
+}
+.icon {
+    margin: 0 10px 0;
+}
+.post {
+    margin-top: 100px;
+    margin-left: 30%;
+    width: 600px;
+    height: 400px;
+    padding: 20px;
+    background: red;
+}

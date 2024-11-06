@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <div class = "main">
+        <img src="../static/img/background.jpg" alt="" style="width: 100%; height: 100%;">
+        {% for post, img in posts%}
+        <div class = "post">
+            <img src= {{img}} alt="" style = "width: 100%; height: 400px;">
+            <p>{{post}}</p>
+        </div>
+        {% endfor%}
+    </div>
+{% endblock %}
