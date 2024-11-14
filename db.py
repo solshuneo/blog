@@ -1,10 +1,8 @@
-from flask_sqlalchemy import SQLAlchemy
-from main import app
+# db.py
 
-# Cấu hình SQLite
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
 
 # Định nghĩa bảng User
 class User(db.Model):
@@ -23,3 +21,6 @@ class User(db.Model):
         self.password = password
         self.display_name = display_name
         self.email = email
+class UploadedFile(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    filename = db.Column(db.String(100), nullable=False)

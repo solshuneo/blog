@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <h2>Danh sách User</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Username</th>
+                <th>Display Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.type }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.display_name }}</td>
+                    <td>{{ user.email }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
