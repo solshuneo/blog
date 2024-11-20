@@ -1,110 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Navbar Alignment</title>
-  <style>
-    body {
-      margin: 10px 0 0;
-      font-family: 'Poppins', sans-serif;
-    }
-    .navbar {
-      margin-bottom: 20px;
-      padding: 20px;
-      background: #FFE5CE;
-      display: flex;
-      align-items: center;
-      font-size: 24px;
-    }
-    .inner-navbar {
-      margin: 0 20px;
-    }
-    /* Gói các mục bên phải trong end-navbar */
-    .end-navbar {
-      display: flex;
-      margin-left: auto; /* Đẩy cả phần tử này sang bên phải */
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
 </head>
 <body>
+    <h1>Edit Profile for {{ user.display_name }}</h1>
 
-<div class="navbar">
-  <div class="inner-navbar">
-    Home
-  </div>
-  <div class="inner-navbar">
-    About
-  </div>
-  <div class="end-navbar">
-    <div class="inner-navbar">
-      Contact
-    </div>
-    <div class="inner-navbar">
-      Login
-    </div>
-  </div>
-</div>
-p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>  
-    <p>fasd</p>  
-    <p>fasd</p>
-    <p>fasd</p> 
-    <p>fasd</p>
-    <p>fasd</p> 
-    <p>fasd</p> 
-    <p>fasd</p>
-    <p>fasd</p> 
+    <form method="POST">
+        <!-- Trường username không thể chỉnh sửa -->
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" value="{{ user.username }}" readonly><br><br>
 
+        <!-- Trường chỉnh sửa tên hiển thị -->
+        <label for="display_name">Display Name:</label>
+        <input type="text" id="display_name" name="display_name" value="{{ user.display_name }}" required><br><br>
 
-    <p>fasd</p> 
-    <p>fasd</p>
-    <p>fasd</p>
-    
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
+        <!-- Trường chỉnh sửa email -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ user.email }}" required><br><br>
 
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
+        <!-- Trường thay đổi mật khẩu -->
+        <label for="password">New Password:</label>
+        <input type="password" id="password" name="password"><br><br>
 
+        <label for="confirm_password">Confirm Password:</label>
+        <input type="password" id="confirm_password" name="confirm_password"><br><br>
 
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
+        <button type="submit">Save Changes</button>
+    </form>
 
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-    <p>fasd</p>
-
-
-    <p>fasd</p>
-    <p>fasd</p>
+    <!-- Hiển thị thông báo lỗi nếu mật khẩu không khớp -->
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
 </body>
 </html>

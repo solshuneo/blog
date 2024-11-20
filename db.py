@@ -14,13 +14,16 @@ class User(db.Model):
     password = db.Column(db.String(20), nullable=False)
     display_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
+    avatar = db.Column(db.String(255), nullable=True)  # Thêm trường avatar lưu URL
 
-    def __init__(self, type, username, password, display_name, email):
+    def __init__(self, type, username, password, display_name, email, avatar='E:\blog\static\img\temp.jpeg'):
         self.type = type
         self.username = username
         self.password = password
         self.display_name = display_name
         self.email = email
+        self.avatar = avatar  # Khởi tạo trường avatar
+
 class UploadedFile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     filename = db.Column(db.String(100), nullable=False)

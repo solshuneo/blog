@@ -1,10 +1,20 @@
 {% extends "base.html" %}
-
+{% block head%}
+    <link rel="stylesheet" href="../static/css/loginlogout.css">
+{% endblock %}
 {% block main %}
-    <h1>Login</h1>
+    {% set user = logged_in %}
     <form method="POST" action="{{ url_for('main.login') }}">
-        <label for="username">Enter your name:</label>
+        <h2>Login</h2>
+        <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <div class="button-container">
         <button type="submit">Login</button>
+        <a href="{{url_for('main.login') }}" class="register-btn">Register</a>
+        </div>
     </form>
 {% endblock%}
