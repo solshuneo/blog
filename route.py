@@ -67,7 +67,11 @@ def testpost():
     return render_template('/posts/firstpost.html', logged_in = None)    
 @main_bp.route('/about')
 def about():
-    return render_template('./about.html')
+    username = session.get('username')
+    user = None
+    if session.get('username') == username:
+        user = User.query.filter_by(username=username).first()  # Tìm người dùng theo username
+    return render_template('./about.html', logged_in = user)
 @main_bp.route('/user/<username>', methods = ['GET', 'POST'])
 def user(username):
     if session.get('username') != username:
@@ -79,12 +83,12 @@ def user(username):
         email = request.form.get('email')
         new_password = request.form.get('password')
         confirm_password = request.form.get('confirm_password')
-
+        url_avatar = request.form.get('url_avatar')
         # Kiểm tra mật khẩu có khớp không
+        user.url_avatar = url_avatar
         if new_password != confirm_password:
             error = "Passwords do not match."
             return render_template('user.html', logged_in=user, error=error)
-
         # Nếu có thay đổi mật khẩu, mã hóa mật khẩu mới và cập nhật
         if new_password:
             user.password = new_password

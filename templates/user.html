@@ -12,19 +12,42 @@
         font-family: Arial, sans-serif;
         background-color: #f4f4f9;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
         min-height: 100vh;
         color: #333;
     }
 
     .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
         background-color: #fff;
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         width: 100%;
-        max-width: 600px;
+        max-width: 800px;
+        margin-bottom: 20px;
+    }
+
+    .avatar {
+        flex: 1 1 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .avatar img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container {
+        flex: 1 1 55%;
     }
 
     h2 {
@@ -76,10 +99,24 @@
         background-color: #4e5ba6;
     }
 
+    .staff-section {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 800px;
+    }
+
     /* Responsive design */
     @media (max-width: 768px) {
         .container {
+            flex-direction: column;
             padding: 15px;
+        }
+
+        .avatar {
+            margin-bottom: 20px;
         }
 
         h2 {
@@ -90,30 +127,62 @@
 {% endblock %}
 {% block main %}
     {% set user = logged_in %}
-    <img src="../static/img/avatar.png" alt="{{user.username}}" style="position: fixed; top:10%; left: 10%; height: 640px; width: 340px;">
     <div class="container">
-        <h2>Edit User Profile</h2>
-        <form method="POST" action="{{ url_for('main.user', username=user.username) }}">
-            <!-- Trường username không thể chỉnh sửa -->
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" value="{{ user.username }}" readonly><br><br>
-    
-            <!-- Trường chỉnh sửa tên hiển thị -->
-            <label for="display_name">Display Name:</label>
-            <input type="text" id="display_name" name="display_name" value="{{ user.display_name }}" required><br><br>
-    
-            <!-- Trường chỉnh sửa email -->
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="{{ user.email }}" required><br><br>
-    
-            <!-- Trường thay đổi mật khẩu -->
-            <label for="password">New Password:</label>
-            <input type="password" id="password" name="password"><br><br>
-    
-            <label for="confirm_password">Confirm Password:</label>
-            <input type="password" id="confirm_password" name="confirm_password"><br><br>
-    
-            <button type="submit">Save Changes</button>
+        <div class="avatar">
+            <img src="{{ user.url_avatar }}" alt="{{ user.username }}" style="height: 480px; width: 240px;">
+        </div>
+        <div class="form-container">
+            <h2>Edit User Profile</h2>
+            <form method="POST" action="{{ url_for('main.user', username=user.username) }}">
+                <!-- Trường username không thể chỉnh sửa -->
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" value="{{ user.username }}" readonly>
+        
+                <!-- Trường chỉnh sửa tên hiển thị -->
+                <label for="display_name">Display Name:</label>
+                <input type="text" id="display_name" name="display_name" value="{{ user.display_name }}" required>
+        
+                <!-- Trường chỉnh sửa email -->
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="{{ user.email }}" required>
+        
+                <!-- Trường chỉnh sửa URL avatar -->
+                <label for="url_avatar">Avatar URL:</label>
+                <input type="text" id="url_avatar" name="url_avatar" value="{{ user.url_avatar }}" placeholder="Enter image URL">
+        
+                <!-- Trường thay đổi mật khẩu -->
+                <label for="password">New Password:</label>
+                <input type="password" id="password" name="password">
+        
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password">
+        
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    {% if user.type == "staff" %}
+    <div class="staff-section">
+        <h2>Upload New Post</h2>
+        <form action="./about.html" method="POST" enctype="multipart/form-data">
+            <!-- CSRF token nếu cần (nếu đang sử dụng Flask-WTF) -->
+            <div class="form-group">
+                <label for="thumbnail">Thumbnail Image:</label>
+                <input type="file" name="thumbnail" id="thumbnail" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="post_url">Post URL:</label>
+                <input type="url" name="post_url" id="post_url" class="form-control" placeholder="Enter Post URL" required>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Upload Post</button>
+            </div>
         </form>
     </div>
+    
+    
+    {% endif %}
 {% endblock %}

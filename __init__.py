@@ -26,14 +26,14 @@ def create_app():
         print("Creating tables and adding sample users")
 
 # Xóa tất cả các bản ghi trong bảng users
-        db.session.query(User).delete()
+        # db.session.query(User).delete()
 
         # Commit các thay đổi vào cơ sở dữ liệu
         db.session.commit()
         # Xóa bảng users nếu đã tồn tại
         from sqlalchemy import text
 
-        db.session.execute(text('DROP TABLE IF EXISTS users'))
+        # db.session.execute(text('DROP TABLE IF EXISTS users'))
 
         # Tạo lại tất cả các bảng
         db.create_all()

@@ -25,7 +25,8 @@
             <a href="https://www.youtube.com/@anhthienthan259"><img class = "icon" atl = "Facebook icon" src = ../static/img/youtube-icon.png style="width: 22px; height: 22px; object-fit: cover;"></a>
             {% if logged_in %}
                 <a href="{{ url_for('main.user', username=logged_in.username) }}">
-                    <img class="icon" alt="Facebook icon" src="../static/img/temp.jpeg" style="width: 22px; height: 22px; object-fit: cover;">
+                    {% set user = logged_in %}
+                    <img class="icon" alt="Facebook icon" src="{{user.url_avatar}}" style="width: 22px; height: 22px; object-fit: cover;">
                 </a>
             {% else %}
                 <a href="{{ url_for('main.login') }}">
