@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <div class="header">
+        <h1>Giới Thiệu Về BKDN</h1>
+        <nav>
+            <ul class="navigation">
+                <li><a href="#gioithieu">Giới Thiệu</a></li>
+                <li><a href="#duongdan">Đường Dẫn</a></li>
+                <li><a href="#khaibaokiem">Khám Phá Kiểm Tra</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <section id="gioithieu" class="section">
+        <h2>BKDN - Đại Học Bách Khoa Đà Nẵng</h2>
+        <p>Trường Đại học Bách Khoa Đà Nẵng (BKDN) là một trong những trường đại học lớn và uy tín tại Việt Nam. Thành lập từ năm 1975, BKDN luôn tự hào là trung tâm đào tạo và nghiên cứu hàng đầu trong lĩnh vực khoa học kỹ thuật và công nghệ.</p>
+        <p>Với sứ mệnh đào tạo nguồn nhân lực chất lượng cao, BKDN đã và đang đóng góp tích cực vào sự phát triển của nền kinh tế quốc gia, đặc biệt là trong các lĩnh vực kỹ thuật, công nghệ, và khoa học ứng dụng.</p>
+    </section>
+
+    <section id="duongdan" class="section">
+        <h3>Đường Dẫn Đến BKDN</h3>
+        <p>Đại học Bách Khoa Đà Nẵng nằm tại số 54 Nguyễn Lương Bằng, TP Đà Nẵng. Đây là khuôn viên rộng lớn với các cơ sở vật chất hiện đại, phục vụ cho quá trình học tập và nghiên cứu của sinh viên.</p>
+    </section>
+
+    <section id="khaibaokiem" class="section">
+        <h3>Khám Phá Kiểm Tra Kiến Thức</h3>
+        <p>Trường cũng đặc biệt chú trọng đến việc đào tạo theo hướng thực hành và phát triển kỹ năng, giúp sinh viên có thể tự tin làm việc trong môi trường quốc tế.</p>
+        <button id="show-message" class="btn">Click để tìm hiểu thêm</button>
+        <p id="hidden-message" class="hidden-message">BKDN luôn tạo cơ hội cho sinh viên tham gia các dự án nghiên cứu và hợp tác quốc tế, giúp sinh viên nâng cao kỹ năng chuyên môn và phát triển bản thân.</p>
+    </section>
+
+
+    <style>
+        .header {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .navigation {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .navigation li {
+            display: inline;
+        }
+
+        .navigation a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .section {
+            margin: 40px auto;
+            max-width: 800px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .hidden-message {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+
+    <script>
+        document.getElementById('show-message').addEventListener('click', function () {
+            const hiddenMessage = document.getElementById('hidden-message');
+            hiddenMessage.style.display = hiddenMessage.style.display === 'none' ? 'block' : 'none';
+        });
+    </script>
+{% endblock %}

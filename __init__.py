@@ -2,7 +2,7 @@
 
 from flask import Flask
 from .config import Config
-from .db import db, User
+from .db import db, User, Post
 from .route import main_bp
 def create_app():
     print("asdfsdf")
@@ -26,8 +26,8 @@ def create_app():
         print("Creating tables and adding sample users")
 
 # Xóa tất cả các bản ghi trong bảng users
-        # db.session.query(User).delete()
-
+        db.session.query(User).delete()
+        # db.session.query(Post).delete()
         # Commit các thay đổi vào cơ sở dữ liệu
         db.session.commit()
         # Xóa bảng users nếu đã tồn tại
